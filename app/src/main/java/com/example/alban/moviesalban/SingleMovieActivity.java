@@ -17,7 +17,9 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class SingleMovieActivity extends AppCompatActivity {
-    public static String EXTRA_MOVIE ="EXTRA_MOVIE";
+    public static String EXTRA_MOVIE_TITLE ="EXTRA_MOVIE_TITLE";
+    public static String EXTRA_MOVIE_RESUME ="EXTRA_MOVIE_RESUME";
+    public static String EXTRA_MOVIE_IMAGE ="EXTRA_MOVIE_IMAGE";
     private List<Movie> m;
 
     TextView singleMovieTitle;
@@ -31,8 +33,11 @@ public class SingleMovieActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        Movie movie = intent.getParcelableExtra(EXTRA_MOVIE);
-        setView(movie);
+        Bundle extras = intent.getExtras();
+        String movieTitle = extras.getString(EXTRA_MOVIE_TITLE);
+        String movieResume = extras.getString(EXTRA_MOVIE_RESUME);
+        String movieImage = extras.getString(EXTRA_MOVIE_IMAGE);
+        setView(movieTitle,movieResume,movieImage);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,16 +48,16 @@ public class SingleMovieActivity extends AppCompatActivity {
             }
         });
     }
-    public void setView(Movie movie){
+    public void setView(String movieTitle,String movieResume,String movieImage){
 
 
         singleMovieTitle = (TextView) this.findViewById(R.id.single_movie_title);
         singleMovieResume = (TextView) this.findViewById(R.id.single_movie_resume);
         singleMovieImage= (ImageView) this.findViewById(R.id.single_movie_image);
 
-        singleMovieTitle.setText(movie.getTitle());
-        singleMovieResume.setText(String.valueOf(movie.getDescription()));
-        Picasso.with(mContext).load(movie.getPoster()).into(singleMovieImage);
+        singleMovieTitle.setText(movieTitle);
+        singleMovieResume.setText(movieResume);
+        Picasso.with(mContext).load(movieImage).into(singleMovieImage);
 
     }
 }

@@ -2,6 +2,7 @@ package com.example.alban.moviesalban;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,9 +50,12 @@ class movieAdapter extends RecyclerView.Adapter<movieViewholder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SingleMovieActivity.class);
-                intent.putExtra(SingleMovieActivity.EXTRA_MOVIE,movie);
+                Bundle extras = new Bundle();
+                extras.putString(SingleMovieActivity.EXTRA_MOVIE_TITLE,movie.getTitle());
+                extras.putString(SingleMovieActivity.EXTRA_MOVIE_RESUME,movie.getDescription());
+                extras.putString(SingleMovieActivity.EXTRA_MOVIE_IMAGE,movie.getPoster());
+                intent.putExtras(extras);
                 view.getContext().startActivity(intent);
-
             }
         });
         holder.movieTitle.setText(String.valueOf(movie.getTitle()));
