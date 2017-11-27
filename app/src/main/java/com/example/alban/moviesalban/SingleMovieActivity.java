@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.alban.moviesalban.models.Movie;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SingleMovieActivity extends AppCompatActivity {
@@ -49,12 +50,10 @@ public class SingleMovieActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                listTitleMovie = sharedPref.getString("fileMovieFav", "test");
-                listTitleMovie= new StringBuilder().append(listTitleMovie).append(";").append(movieTitle).toString();
-                editor.putString(fileMovieFav,listTitleMovie);
-                editor.commit();
+                updateSharedPreferences(movieTitle);
+                setStarFav(listTitleMovie,movieTitle);
+
+
             }
         });
     }
@@ -71,12 +70,52 @@ public class SingleMovieActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         String  listTitleMovie= sharedPref.getString("fileMovieFav", "test");
-        String[] listTitleMovieCut = listTitleMovie.split(";");
+        setStarFav(listTitleMovie,movieTitle);
+
+    }
+
+
+    public void setStarFav(String listTitleMovieFav, String movieTitle){
+        String[] listTitleMovieCut = listTitleMovieFav.split(";");
+        boolean testFav=false;
         for (String m: listTitleMovieCut){
-            if(m==movieImage){
-                butFav.setImageResource(R.drawable.ic_home_black_24dp);
+            if(m.equals(movieTitle)) {
+                butFav.setImageResource(R.mipmap.ic_star_on);
+                testFav = true;
             }
         }
+        if(!testFav){
+            butFav.setImageResource(R.mipmap.ic_star_off);
+        }
+    }
+
+
+    public void updateSharedPreferences(String movieTitle){
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        ArrayList<String> arrayListTitleMovieCut = new ArrayList<String>();
+        boolean testMovieFav= false;
+        String  listTitleMovieFav= sharedPref.getString("fileMovieFav", "test");
+        String[] listTitleMovieCut = listTitleMovieFav.split(";");
+        for (String m: listTitleMovieCut){
+
+            if(m.equals(movieTitle)) {
+                testMovieFav = true;
+            }else{
+                arrayListTitleMovieCut.add(m);
+            }
+        }
+        if(!testMovieFav){
+            arrayListTitleMovieCut.add(movieTitle);
+        }
+        listTitleMovie="";
+        for(String m : arrayListTitleMovieCut){
+            if(!m.equals("")) {
+                listTitleMovie += m + ";";
+            }
+        }
+        editor.putString(fileMovieFav, listTitleMovie);
+        editor.commit();
 
     }
 }
