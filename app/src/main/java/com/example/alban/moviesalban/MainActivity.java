@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ApiServiceImpl apiService = new ApiServiceImpl();
     private TextView mTextMessage;
     List<Movie> movies;
+    boolean viewTestInit=false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,12 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    if (viewTestInit){
+                        setView(movies);
+                    }
 
                     return true;
                 case R.id.navigation_dashboard:
 
+                    setViewLitle(movies);
+                    viewTestInit=true;
                     return true;
                 case R.id.navigation_notifications:
+                    viewTestInit=true;
 
                     return true;
             }
@@ -48,21 +55,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getPopularMovies();
+
         //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        getPopularMovies();
+
 
     }
-
-
     private void getPopularMovies() {
 
         apiService.getPopularMovies(new ApiServiceImpl.CustomCallBack<Movie>() {
             @Override
-            public void onSuccess(List<Movie> movies) {
+            public void onSuccess(List<Movie> moviesList) {
                 //DO YOUR JOB
-                setView(movies);
+                //setView(movies);
+                movies=moviesList;
+                if(!viewTestInit){
+                    setView(movies);
+                }
             }
 
             @Override
@@ -82,8 +93,19 @@ public class MainActivity extends AppCompatActivity {
         movieAdapter movieAdapter = new movieAdapter(getApplicationContext(),movies);
 
         recycler.setAdapter(movieAdapter);
-
-
-
     }
+
+    private void setViewLitle(List<Movie> movies) {
+
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layoutManager);
+
+        movieAdapterLitle movieAdapterLitle = new movieAdapterLitle(getApplicationContext(),movies);
+
+        recycler.setAdapter(movieAdapterLitle);
+    }
+
+
 }

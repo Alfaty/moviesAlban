@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Alban\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_d001c48f98e7bc2447a087b942805dd3857ee432.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7fc1d880815416f981e269deb94a4a9b7f6d23ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="212a545dc00c1cf27d8131d21fca8fb2d83b03fa">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_2f11ff34647e650fe6cc8fcce1adfa15469480fd\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Alban\.android\build-cache\b2434c4598c54cbe723ffc649f6fb9cbe2a66a7f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\pre-dexed\debug\classes_db1de24f46fc41c5ccc72da15c72624af2459105.jar" />
+    </item>
+
+</items>
