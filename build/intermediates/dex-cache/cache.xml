@@ -2,112 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\okhttp-3.8.0_eb59b5256297690e78347ad894d4f1df5c1a0d9e.jar" />
-    </item>
-    <item
         is-multidex="true"
-        jar="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="76909736e5338a22055efa87c0be82289d07eeb3">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7ac3cb077d35bca7aca066201e6112f858642e80\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.3.0\bcacde6a8ccedcc56c127403d26b76072fe6214d\retrofit-2.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.3.0_18b19695a6f1e96874c4fe69fe57a0af89b4513f\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_44af69bbef07f5f2477b16da2b69a251df946073.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.3.0\bcacde6a8ccedcc56c127403d26b76072fe6214d\retrofit-2.3.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\retrofit-2.3.0_18b19695a6f1e96874c4fe69fe57a0af89b4513f.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.8.0_eb59b5256297690e78347ad894d4f1df5c1a0d9e\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.3.0\9e09011e9767bb76b5e27c9b8223476b93b14631\converter-gson-2.3.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\converter-gson-2.3.0_0cdc5509d75dd936a181a50dcd09f80cc38aa5ac.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3ba4fc819b0316b4a61367ad6d6ba98094c9d443\classes.dex" />
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7fc1d880815416f981e269deb94a4a9b7f6d23ec\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_44af69bbef07f5f2477b16da2b69a251df946073\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.3.0\9e09011e9767bb76b5e27c9b8223476b93b14631\converter-gson-2.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-gson-2.3.0_0cdc5509d75dd936a181a50dcd09f80cc38aa5ac\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\okio-1.13.0_2ba1265f20881fd88a178412259b4bc3ffc93041.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Alban\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.2\3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf\gson-2.8.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf">
-        <dex dex="C:\Users\Alban\AndroidStudioProjects\moviesAlban\app\build\intermediates\pre-dexed\debug\gson-2.8.2_4b60b178bd96a82374335275ee8a59717dbdf237.jar" />
+        sha1="212a545dc00c1cf27d8131d21fca8fb2d83b03fa">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_2f11ff34647e650fe6cc8fcce1adfa15469480fd\classes.dex" />
     </item>
 
 </items>

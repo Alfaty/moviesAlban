@@ -60,10 +60,9 @@ class movieAdapterLitle extends RecyclerView.Adapter<movieViewHolderLitle> {
                 view.getContext().startActivity(intent);
             }
         });
-
-        holder.movieTitle.setText(movie.getTitle());
-        holder.movieResume.setText(movie.getDescription());
-        Picasso.with(mContext).load(movie.getBackdrop()).into(holder.movieImage);
+        holder.movieTitle.setText(String.valueOf(movie.getTitle()));
+        holder.movieResume.setText(String.valueOf(movie.getDescription()));
+        Picasso.with(mContext).load(movie.getPoster()).into(holder.movieImage);
     }
 
     @Override

@@ -10,4 +10,5 @@ public interface ApiService {
     @GET("movie/popular")
     Call<Movie.MovieResult> getPopularMovies(@Query("api_key") String apiKey);
 
+
 }

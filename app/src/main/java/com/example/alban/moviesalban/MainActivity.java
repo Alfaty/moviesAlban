@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,20 +33,20 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation:
                     if (viewTestInit){
                         setView(movies);
                     }
 
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_litle:
 
                     setViewLitle(movies);
                     viewTestInit=true;
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_big:
+                    setViewBig(movies);
                     viewTestInit=true;
-
                     return true;
             }
             return false;
@@ -60,8 +63,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getPopularMovies();
+    }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
     private void getPopularMovies() {
 
@@ -105,6 +113,19 @@ public class MainActivity extends AppCompatActivity {
         movieAdapterLitle movieAdapterLitle = new movieAdapterLitle(getApplicationContext(),movies);
 
         recycler.setAdapter(movieAdapterLitle);
+    }
+
+    private void setViewBig (List<Movie> movies){
+
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this,3);
+        recycler.setLayoutManager(layoutManager);
+
+        movieAdapterBig movieAdapterBig = new movieAdapterBig(getApplicationContext(),movies);
+
+        recycler.setAdapter(movieAdapterBig);
+
     }
 
 
