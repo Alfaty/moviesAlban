@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.widget.Button;
 public class SingleMovieActivity extends AppCompatActivity {
     public static String EXTRA_MOVIE_TITLE ="EXTRA_MOVIE_TITLE";
     public static String EXTRA_MOVIE_RESUME ="EXTRA_MOVIE_RESUME";
@@ -29,9 +29,11 @@ public class SingleMovieActivity extends AppCompatActivity {
     TextView singleMovieResume;
     ImageView singleMovieImage;
     ImageView butFav;
+    Button buttonSared;
     public String movieTitle;
     public String movieResume;
     public String movieImage;
+
 
     Context mContext;
     String  listTitleMovie;
@@ -46,6 +48,7 @@ public class SingleMovieActivity extends AppCompatActivity {
         movieTitle = extras.getString(EXTRA_MOVIE_TITLE);
         movieResume = extras.getString(EXTRA_MOVIE_RESUME);
         movieImage = extras.getString(EXTRA_MOVIE_IMAGE);
+        buttonSared=(Button)findViewById(R.id.shared_button);
         setView(movieTitle,movieResume,movieImage);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -56,6 +59,11 @@ public class SingleMovieActivity extends AppCompatActivity {
                 setStarFav(listTitleMovie,movieTitle);
 
 
+            }
+        });
+        buttonSared.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                share();
             }
         });
     }
@@ -126,4 +134,10 @@ public class SingleMovieActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
+    public void share (){
+        Intent sharingIntent= new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        //sharingIntent.putExtra();
+    }
+
 }

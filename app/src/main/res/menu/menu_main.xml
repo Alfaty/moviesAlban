@@ -14,4 +14,18 @@
 
     <item android:title="Settings" />
     <item android:title="Favoris" />
+
+
+    <group android:checkableBehavior="single">
+        <item android:title="Populaire"
+              android:id="@+id/item_menu_popular"
+              android:checked="true"/>
+        <item android:title="Mieu noté"
+            android:id="@+id/item_menu_toprated"/>
+        <item android:title="En diffusion"
+            android:id="@+id/item_menu_nowplaying"/>
+    </group>
+
+
+
 </menu>

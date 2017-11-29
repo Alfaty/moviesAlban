@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlbanGit2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlbanGit2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_820064ad71d565400ad77234c915a0a779f79d17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -18,6 +27,15 @@
         revision="26.0.1"
         sha1="212a545dc00c1cf27d8131d21fca8fb2d83b03fa">
         <dex dex="D:\Alban\Eilco\appli mobile\moviesAlban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_2f11ff34647e650fe6cc8fcce1adfa15469480fd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Alban\Eilco\appli mobile\moviesAlbanGit2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="13117e58a119a0a4fc36b6a1d1597ff5ee0b811a">
+        <dex dex="D:\Alban\Eilco\appli mobile\moviesAlbanGit2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_88d3e0fe970371c4d73b814fd04ddfb67f6a41e4\classes.dex" />
     </item>
 
 </items>

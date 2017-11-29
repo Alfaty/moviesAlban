@@ -28,12 +28,17 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
-    <include layout="@layout/content_single_movie" />
+    <include layout="@layout/content_single_movie"
+        android:id="@+id/include" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <Button
+        android:id="@+id/shared_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:layout_gravity="top|right"
+        android:text="Button"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|left" />
+
 
 </android.support.design.widget.CoordinatorLayout>
