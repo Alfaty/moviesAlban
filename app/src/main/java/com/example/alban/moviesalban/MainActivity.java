@@ -1,14 +1,19 @@
 package com.example.alban.moviesalban;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -73,6 +78,32 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        // Assumes current activity is the searchable activity
+        String pkg = "com.example.caparros.moviedbcaparros";
+        String cls = "com.example.caparros.moviedbcaparros.services.SearchableActivity";
+        ComponentName cn = new ComponentName(pkg,cls);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
+        searchView.setIconifiedByDefault(false);
+        searchView.setSubmitButtonEnabled(true);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Called when the user submits the query.
+                getMoviesFromTitle(query,language);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Called when the query text is changed by the user.
+                return true;
+            }
+        });
 
         return true;
     }
@@ -225,6 +256,23 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+    public void getMoviesFromTitle(String query,String language){
+        apiService.getMoviesFromTitle(new ApiServiceImpl.CustomCallBack<Movie>() {
+            @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
+            @Override
+            public void onSuccess(List<Movie> listMovies) {
+                movies=listMovies;
+                setView(movies,typeView);
+
+                Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }, query,language);
     }
 
 
