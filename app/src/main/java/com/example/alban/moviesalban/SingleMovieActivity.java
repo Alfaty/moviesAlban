@@ -39,6 +39,7 @@ public class SingleMovieActivity extends AppCompatActivity {
     String  listTitleMovie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_movie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -78,7 +79,7 @@ public class SingleMovieActivity extends AppCompatActivity {
         singleMovieResume.setText(movieResume);
         Picasso.with(mContext).load(movieImage).into(singleMovieImage);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = mContext.getSharedPreferences("fileFav",Context.MODE_PRIVATE);
         String  listTitleMovie= sharedPref.getString("fileMovieFav", "test");
         setStarFav(listTitleMovie,movieTitle);
 
@@ -101,7 +102,8 @@ public class SingleMovieActivity extends AppCompatActivity {
 
 
     public void updateSharedPreferences(String movieTitle){
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPref = mContext.getSharedPreferences("fileFav",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         ArrayList<String> arrayListTitleMovieCut = new ArrayList<String>();
         boolean testMovieFav= false;
@@ -124,7 +126,7 @@ public class SingleMovieActivity extends AppCompatActivity {
                 listTitleMovie += m + ";";
             }
         }
-        editor.putString(fileMovieFav, listTitleMovie);
+        editor.putString("fileMovieFav", listTitleMovie);
         editor.commit();
 
     }

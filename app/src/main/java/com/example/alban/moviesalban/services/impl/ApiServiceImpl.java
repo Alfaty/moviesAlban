@@ -30,13 +30,13 @@ public class ApiServiceImpl {
     }
 
 
-    public void getPopularMovies(final CustomCallBack<Movie> customCallBack) {
+    public void getPopularMovies(final CustomCallBack<Movie> customCallBack,String language) {
         final List<Movie> movies = new ArrayList<>();
         ApiService service = getMovieApiService();
 
 
         //APPEL RETROFIT
-        service.getPopularMovies(API_KEY).enqueue(new Callback<Movie.MovieResult>() {
+        service.getPopularMovies(API_KEY,language).enqueue(new Callback<Movie.MovieResult>() {
             @Override
             public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
 
@@ -58,13 +58,13 @@ public class ApiServiceImpl {
             }
         });
     }
-    public void getNowPlayingMovies(final CustomCallBack<Movie> customCallBack) {
+    public void getNowPlayingMovies(final CustomCallBack<Movie> customCallBack, String language) {
         final List<Movie> movies = new ArrayList<>();
         ApiService service = getMovieApiService();
 
 
         //APPEL RETROFIT
-        service.getNowPlayingMovies(API_KEY).enqueue(new Callback<Movie.MovieResult>() {
+        service.getNowPlayingMovies(API_KEY,language).enqueue(new Callback<Movie.MovieResult>() {
             @Override
             public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
 
@@ -86,13 +86,42 @@ public class ApiServiceImpl {
             }
         });
     }
-    public void getTopRatedMovies(final CustomCallBack<Movie> customCallBack) {
+    public void getTopRatedMovies(final CustomCallBack<Movie> customCallBack,String language) {
         final List<Movie> movies = new ArrayList<>();
         ApiService service = getMovieApiService();
 
 
         //APPEL RETROFIT
-        service.getTopRatedMovies(API_KEY).enqueue(new Callback<Movie.MovieResult>() {
+        service.getTopRatedMovies(API_KEY,language).enqueue(new Callback<Movie.MovieResult>() {
+            @Override
+            public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
+
+                Movie.MovieResult movieResult = response.body();
+
+                if (movieResult != null) {
+                    for (Movie movie : movieResult.getResults()) {
+                        if (movie.getBackdrop() != null && movie.getPoster() != null) {
+                            movies.add(movie);
+                        }
+                    }
+                }
+                customCallBack.onSuccess(movies);
+            }
+
+            @Override
+            public void onFailure(Call<Movie.MovieResult> call, Throwable t) {
+                customCallBack.onError("Impossible de recupérer les films populaires");
+            }
+        });
+    }
+
+    public void getMoviesFromTitle(final CustomCallBack<Movie> customCallBack,String language,String movieTitle) {
+        final List<Movie> movies = new ArrayList<>();
+        ApiService service = getMovieApiService();
+
+
+        //APPEL RETROFIT
+        service.getMoviesFromTitle(API_KEY,language,movieTitle).enqueue(new Callback<Movie.MovieResult>() {
             @Override
             public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
 

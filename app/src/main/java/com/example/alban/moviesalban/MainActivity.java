@@ -1,5 +1,7 @@
 package com.example.alban.moviesalban;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ApiServiceImpl apiService = new ApiServiceImpl();
     private TextView mTextMessage;
     private List<Movie> movies;
-    boolean viewTestInit=false;
     String typeView="medium";
+    String typeSearch="populare";
+    String language="en-En";
+    Context mContext;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        getPopularMovies();
+        getPopularMovies(language);
 
     }
 
@@ -76,26 +81,64 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_menu_popular:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                getPopularMovies();
+                item.setChecked(true);
+                getPopularMovies(language);
                 return true;
+            case R.id.item_menu_fav:
+                item.setChecked(true);
+               // getFavMovie(language);
             case R.id.item_menu_toprated:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                getTopRatedMovie();
+                item.setChecked(true);
+                getTopRatedMovie(language);
                 return true;
             case R.id.item_menu_nowplaying:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-
-                getNowPlayingMovies();
+                item.setChecked(true);
+                getNowPlayingMovies(language);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+            case R.id.item_menu_english:
+                item.setChecked(true);
+                language="en-EN";
+                switch (typeSearch){
+                    case "popular":
+                        getPopularMovies(language);
+                        break;
+                    case "fav":
+                       // getFavMovie(language);
+                        break;
+                    case "topRated":
+                        getTopRatedMovie(language);
+                        break;
+                    case "playingNow":
+                        getNowPlayingMovies(language);
+                        break;
+                }
+
+                return true;
+            case R.id.item_menu_french:
+                 item.setChecked(true);
+                language="fr-FR";
+                switch (typeSearch){
+                    case "popular":
+                        getPopularMovies(language);
+                        break;
+                    case "fav":
+                        //get les fav à faire.
+                        //getFavMovie(language);
+                        break;
+                    case "topRated":
+                        getTopRatedMovie(language);
+                        break;
+                    case "playingNow":
+                        getNowPlayingMovies(language);
+                        break;
+                }
+                return true;
         }
+
     }
-    private void getPopularMovies() {
+    private void getPopularMovies(String language) {
 
         apiService.getPopularMovies(new ApiServiceImpl.CustomCallBack<Movie>() {
             @Override
@@ -103,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 //DO YOUR JOB
                 //setView(movies);
                 movies=moviesList;
+                typeSearch="popular";
                 setView(movies,typeView);
 
             }
@@ -111,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
             public void onError(String message) {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
-        });
+        },language);
     }
 
-    private void getTopRatedMovie() {
+    private void getTopRatedMovie(String language) {
 
         apiService.getTopRatedMovies(new ApiServiceImpl.CustomCallBack<Movie>() {
             @Override
@@ -122,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
                 //DO YOUR JOB
                 //setView(movies);
                 movies=moviesList;
-                    setView(movies,typeView);
+                typeSearch="topRated";
+                setView(movies,typeView);
 
             }
 
@@ -130,9 +175,10 @@ public class MainActivity extends AppCompatActivity {
             public void onError(String message) {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
-        });
+        },language);
     }
-    private void getNowPlayingMovies() {
+
+    private void getNowPlayingMovies(String language) {
 
         apiService.getNowPlayingMovies(new ApiServiceImpl.CustomCallBack<Movie>() {
             @Override
@@ -140,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
                 //DO YOUR JOB
                 //setView(movies);
                 movies=moviesList;
-                    setView(movies,typeView);
+                typeSearch="playingNow";
+                setView(movies,typeView);
 
             }
 
@@ -148,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             public void onError(String message) {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
-        });
+        },language);
     }
 
     private void setView(List<Movie> movies,String type) {
@@ -180,30 +227,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setViewLitle(List<Movie> movies) {
-
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(layoutManager);
-
-        movieAdapterLitle movieAdapterLitle = new movieAdapterLitle(getApplicationContext(),movies);
-
-        recycler.setAdapter(movieAdapterLitle);
-    }
-
-    private void setViewBig (List<Movie> movies){
-
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
-
-        GridLayoutManager layoutManager = new GridLayoutManager(this,3);
-        recycler.setLayoutManager(layoutManager);
-
-        movieAdapterBig movieAdapterBig = new movieAdapterBig(getApplicationContext(),movies);
-
-        recycler.setAdapter(movieAdapterBig);
-
-    }
 
 
 }

@@ -16,16 +16,30 @@
     <item android:title="Favoris" />
 
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/groupe_menu_search"
+        android:checkableBehavior="single">
         <item android:title="Populaire"
               android:id="@+id/item_menu_popular"
               android:checked="true"/>
         <item android:title="Mieu noté"
             android:id="@+id/item_menu_toprated"/>
+        <item android:title="Favoris"
+            android:id="@+id/item_menu_fav"/>
         <item android:title="En diffusion"
             android:id="@+id/item_menu_nowplaying"/>
     </group>
 
+
+    <group
+        android:id="@+id/group_menu_language"
+        android:checkableBehavior="single">
+        <item android:title="Englais"
+            android:id="@+id/item_menu_english"
+            android:checked="true"/>
+        <item android:title="Francais"
+            android:id="@+id/item_menu_french"/>
+    </group>
 
 
 </menu>
