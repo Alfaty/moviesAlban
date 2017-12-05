@@ -139,7 +139,10 @@ public class SingleMovieActivity extends AppCompatActivity {
     public void share (){
         Intent sharingIntent= new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        //sharingIntent.putExtra();
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "A voir");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,  movieTitle+", Mec il faut que tu regarde ça");
+        startActivity(Intent.createChooser(sharingIntent, "Partager depuis"));
+
     }
 
 }

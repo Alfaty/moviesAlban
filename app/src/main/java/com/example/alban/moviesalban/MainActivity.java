@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.alban.moviesalban.models.Movie;
 import com.example.alban.moviesalban.services.impl.ApiServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ApiServiceImpl apiService = new ApiServiceImpl();
     private TextView mTextMessage;
     private List<Movie> movies;
+    private ArrayList<String> moviesFav= new ArrayList<String>();
     String typeView="medium";
     String typeSearch="populare";
     String language="en-En";
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        setFavMovie();
         getPopularMovies(language);
 
     }
@@ -83,13 +85,12 @@ public class MainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
         // Assumes current activity is the searchable activity
-        String pkg = "com.example.caparros.moviedbcaparros";
-        String cls = "com.example.caparros.moviedbcaparros.services.SearchableActivity";
+        String pkg = "com.example.alban.moviesalban";
+        String cls = "com.example.alban.moviesalban.MainActivity";
         ComponentName cn = new ComponentName(pkg,cls);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
         searchView.setIconifiedByDefault(false);
         searchView.setSubmitButtonEnabled(true);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -117,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.item_menu_fav:
                 item.setChecked(true);
-               // getFavMovie(language);
+                typeSearch="fav";
+                setView();
+                return true;
             case R.id.item_menu_toprated:
                 item.setChecked(true);
                 getTopRatedMovie(language);
@@ -126,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 getNowPlayingMovies(language);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+
             case R.id.item_menu_english:
                 item.setChecked(true);
                 language="en-EN";
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         getPopularMovies(language);
                         break;
                     case "fav":
-                       // getFavMovie(language);
+                        setView();
                         break;
                     case "topRated":
                         getTopRatedMovie(language);
@@ -155,8 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         getPopularMovies(language);
                         break;
                     case "fav":
-                        //get les fav à faire.
-                        //getFavMovie(language);
+                        setView();
                         break;
                     case "topRated":
                         getTopRatedMovie(language);
@@ -166,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
     }
@@ -229,6 +232,16 @@ public class MainActivity extends AppCompatActivity {
         },language);
     }
 
+    private void setView() {
+
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        recycler.setLayoutManager(layoutManager);
+        movieAdapterFav movieAdapterFav = new movieAdapterFav(getApplicationContext(),moviesFav);
+        recycler.setAdapter(movieAdapterFav);
+    }
     private void setView(List<Movie> movies,String type) {
 
         RecyclerView recycler = (RecyclerView) findViewById(R.id.movieRecycler);
@@ -259,7 +272,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void getMoviesFromTitle(String query,String language){
         apiService.getMoviesFromTitle(new ApiServiceImpl.CustomCallBack<Movie>() {
-            @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onSuccess(List<Movie> listMovies) {
                 movies=listMovies;
@@ -274,6 +286,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }, query,language);
     }
+
+    public void setFavMovie(){
+
+        SharedPreferences sharedPref = mContext.getSharedPreferences("fileFav",Context.MODE_PRIVATE);
+        String  listTitleMovieFav= sharedPref.getString("fileMovieFav", "test");
+        String[] listTitleMovieCut = listTitleMovieFav.split(";");
+        for(String title : listTitleMovieCut) {
+            if (!title.equals("test")){
+                moviesFav.add(title);
+            }
+
+        }
+    }
+
+
+
 
 
 

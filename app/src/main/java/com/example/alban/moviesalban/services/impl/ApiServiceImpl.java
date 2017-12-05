@@ -115,13 +115,13 @@ public class ApiServiceImpl {
         });
     }
 
-    public void getMoviesFromTitle(final CustomCallBack<Movie> customCallBack,String language,String movieTitle) {
+    public void getMoviesFromTitle(final CustomCallBack<Movie> customCallBack,String movieTitle,String language) {
         final List<Movie> movies = new ArrayList<>();
         ApiService service = getMovieApiService();
 
 
         //APPEL RETROFIT
-        service.getMoviesFromTitle(API_KEY,language,movieTitle).enqueue(new Callback<Movie.MovieResult>() {
+        service.getMoviesFromTitle(API_KEY,movieTitle,language).enqueue(new Callback<Movie.MovieResult>() {
             @Override
             public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
 
